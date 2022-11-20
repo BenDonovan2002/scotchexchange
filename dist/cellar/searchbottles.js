@@ -164,18 +164,18 @@ function RetrieveMatchRanking(searchStringWords, searchResultWords) {
     let count = 0;
     let indexedWords = [];
     for (let i = 0; i < searchStringWords.length; i++) {
-        if (searchResultWords.includes(searchStringWords[i]) && !indexedWords.includes(searchStringWords[i])) {
+        if (searchResultWords.includes(searchStringWords[i].toLowerCase()) && !indexedWords.includes(searchStringWords[i].toLowerCase())) {
             count++;
-            indexedWords.push(searchStringWords[i]);
+            indexedWords.push(searchStringWords[i].toLowerCase());
         }
     }
     return (count / searchResultWords.length) * 100;
 }
 function CurateSearchResults(searchString, searchResults) {
-    let searchStringWords = searchString.split(" ");
+    let searchStringWords = searchString.toLowerCase().split(" ");
     let curatedResults = [];
     for (let i = 0; i < searchResults.length; i++) {
-        let searchResultWords = searchResults[i].pageTitle.split(" ");
+        let searchResultWords = searchResults[i].pageTitle.toLowerCase().split(" ");
         curatedResults.push([
             searchResults[i],
             RetrieveMatchRanking(searchStringWords, searchResultWords)
@@ -184,6 +184,7 @@ function CurateSearchResults(searchString, searchResults) {
     let sortedResults = curatedResults.sort((a, b) => {
         return b[1] - a[1];
     });
+    console.log(sortedResults);
     return sortedResults;
 }
 module.exports.GetRelevantBottles = function (searchQuery, rescount, currentPage, callback) {

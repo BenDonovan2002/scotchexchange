@@ -8,7 +8,7 @@
  */
 export function SignInUserDEV ( username: string, password: string, redirectUser?: CallableFunction ): void {
 
-    if ( username == "admin" && password == "1" ){
+    if ( username.toLowerCase() == "admin" && password == "1" ){
         if ( redirectUser != undefined ){ redirectUser( "admin" ) }
     } else {
         if ( redirectUser != undefined ){ redirectUser( null ) }

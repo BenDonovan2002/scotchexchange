@@ -42,7 +42,6 @@ app.use(function (req: any, res: any, next: any) {
     if (req.path == "/auth/dev/login" || req.path == "/auth/dev/login/err" || req.path == "/signindev/") {
         next();
     } else {
-        req.session.development_id = 1;
         if (!req.session.development_id) {
             res.redirect("/auth/dev/login");
         } else {

@@ -2,8 +2,8 @@
 module.exports.getSQL = function () {
     return ({
         host: "localhost",
-        user: "root",
-        password: "",
+        user: "ben",
+        password: "Wozniak76!",
         database: "scotchexchange"
     });
 };

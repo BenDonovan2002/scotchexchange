@@ -188,9 +188,9 @@ function RetrieveMatchRanking(searchStringWords: Array<string>, searchResultWord
     let count = 0;
     let indexedWords: any = [];
     for (let i = 0; i < searchStringWords.length; i++) {
-        if (searchResultWords.includes(searchStringWords[i]) && !indexedWords.includes(searchStringWords[i])) {
+        if (searchResultWords.includes(searchStringWords[i].toLowerCase()) && !indexedWords.includes(searchStringWords[i].toLowerCase())) {
             count++;
-            indexedWords.push(searchStringWords[i]);
+            indexedWords.push(searchStringWords[i].toLowerCase());
         }
     }
 
@@ -198,10 +198,10 @@ function RetrieveMatchRanking(searchStringWords: Array<string>, searchResultWord
 }
 
 function CurateSearchResults(searchString: string, searchResults: Array<any>) {
-    let searchStringWords = searchString.split(" ");
+    let searchStringWords = searchString.toLowerCase().split(" ");
     let curatedResults: Array<any> = [];
     for (let i = 0; i < searchResults.length; i++) {
-        let searchResultWords = searchResults[i].pageTitle.split(" ");
+        let searchResultWords = searchResults[i].pageTitle.toLowerCase().split(" ");
         curatedResults.push([
             searchResults[i],
             RetrieveMatchRanking(searchStringWords, searchResultWords)
@@ -211,6 +211,8 @@ function CurateSearchResults(searchString: string, searchResults: Array<any>) {
     let sortedResults = curatedResults.sort((a, b) => {
         return b[1] - a[1];
     });
+    
+    console.log(sortedResults);
 
     return sortedResults;
 }

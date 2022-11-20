@@ -10,7 +10,7 @@ exports.SignInUserDEV = void 0;
  * @param redirectUser The callback function used to redirect the user
  */
 function SignInUserDEV(username, password, redirectUser) {
-    if (username == "admin" && password == "1") {
+    if (username.toLowerCase() == "admin" && password == "1") {
         if (redirectUser != undefined) {
             redirectUser("admin");
         }

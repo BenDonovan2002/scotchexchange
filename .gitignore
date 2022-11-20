@@ -1,0 +1,3 @@
+node_modules
+dist/data_store.js
+src/data_store.ts

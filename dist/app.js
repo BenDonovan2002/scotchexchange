@@ -44,7 +44,6 @@ app.use(function (req, res, next) {
         next();
     }
     else {
-        req.session.development_id = 1;
         if (!req.session.development_id) {
             res.redirect("/auth/dev/login");
         }
