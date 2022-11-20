@@ -44,6 +44,7 @@ app.use(function (req, res, next) {
         next();
     }
     else {
+        req.session.development_id = 1;
         if (!req.session.development_id) {
             res.redirect("/auth/dev/login");
         }
@@ -400,25 +401,245 @@ app.get('/test/', (req, res) => {
     res.render("test");
 });
 app.get('/dashboard/', (req, res) => {
-    res.render("cellar/dashboard", { filter: "bottles", timeScale: "Max" });
+    let aggregateBottles = [];
+    //anchor
+    let GetAggregateFunc = (model_id) => {
+        return new Promise((resolve, reject) => {
+            let bottle_info = null;
+            let average_sales = null;
+            let most_profitable_auction_house = null;
+            let SQL_COMPLETE = () => {
+                if (bottle_info != null && average_sales != null && most_profitable_auction_house != null) {
+                    bottle_info.mostProfitableAuctionHouse = most_profitable_auction_house;
+                    resolve([bottle_info, average_sales]);
+                }
+            };
+            aggregate_data.GetBottleInfo(model_id, (i) => {
+                bottle_info = i;
+                bottle_info.modelID = model_id;
+                //console.log("GetBottleInfo: " + (new Date().getTime() - startTime) + "ms");
+                SQL_COMPLETE();
+            });
+            // Ineffecient
+            GetMostProfitableAuctionHousePerBottle(model_id).then((auctionHouse) => {
+                most_profitable_auction_house = auctionHouse;
+                //console.log("GetMostProfitableAuctionHousePerBottle: " + (new Date().getTime() - startTime) + "ms");
+                SQL_COMPLETE();
+            });
+            // Ineffecient
+            aggregate_data.GetAveragesByMonthYear(model_id, (r) => {
+                average_sales = r;
+                //console.log("GetAveragesByMonthYear: " + (new Date().getTime() - startTime) + "ms");
+                SQL_COMPLETE();
+            });
+        });
+    };
+    RetrieveUserID(req.session.sID, (userID) => {
+        GetCellarContent(userID, (cellar_content) => {
+            for (let i = 0; i < cellar_content.length; i++) {
+                GetAggregateFunc(cellar_content[i].bottle_id).then((results) => {
+                    aggregateBottles.push(results);
+                    if (aggregateBottles.length == cellar_content.length) {
+                        res.render("cellar/dashboard", { filter: "bottles", timeScale: "Max", cellar_content: JSON.stringify(cellar_content), aggregate_bottles: JSON.stringify(aggregateBottles) });
+                    }
+                });
+            }
+        });
+    });
 });
 app.get('/dashboard/filter=:filter', (req, res) => {
     let filter = req.params.filter;
-    res.render("cellar/dashboard", { filter: filter, timeScale: "Max" });
+    let aggregateBottles = [];
+    //anchor
+    let GetAggregateFunc = (model_id) => {
+        return new Promise((resolve, reject) => {
+            let bottle_info = null;
+            let average_sales = null;
+            let most_profitable_auction_house = null;
+            let SQL_COMPLETE = () => {
+                if (bottle_info != null && average_sales != null && most_profitable_auction_house != null) {
+                    bottle_info.mostProfitableAuctionHouse = most_profitable_auction_house;
+                    resolve([bottle_info, average_sales]);
+                }
+            };
+            aggregate_data.GetBottleInfo(model_id, (i) => {
+                bottle_info = i;
+                bottle_info.modelID = model_id;
+                //console.log("GetBottleInfo: " + (new Date().getTime() - startTime) + "ms");
+                SQL_COMPLETE();
+            });
+            // Ineffecient
+            GetMostProfitableAuctionHousePerBottle(model_id).then((auctionHouse) => {
+                most_profitable_auction_house = auctionHouse;
+                //console.log("GetMostProfitableAuctionHousePerBottle: " + (new Date().getTime() - startTime) + "ms");
+                SQL_COMPLETE();
+            });
+            // Ineffecient
+            aggregate_data.GetAveragesByMonthYear(model_id, (r) => {
+                average_sales = r;
+                //console.log("GetAveragesByMonthYear: " + (new Date().getTime() - startTime) + "ms");
+                SQL_COMPLETE();
+            });
+        });
+    };
+    RetrieveUserID(req.session.sID, (userID) => {
+        GetCellarContent(userID, (cellar_content) => {
+            for (let i = 0; i < cellar_content.length; i++) {
+                GetAggregateFunc(cellar_content[i].bottle_id).then((results) => {
+                    aggregateBottles.push(results);
+                    if (aggregateBottles.length == cellar_content.length) {
+                        res.render("cellar/dashboard", { filter: filter, timeScale: "Max", cellar_content: JSON.stringify(cellar_content), aggregate_bottles: JSON.stringify(aggregateBottles) });
+                    }
+                });
+            }
+        });
+    });
 });
 app.get('/dashboard/timescale=:timescale', (req, res) => {
     let timescale = req.params.timescale;
-    res.render("cellar/dashboard", { filter: "bottles", timeScale: timescale });
+    let aggregateBottles = [];
+    //anchor
+    let GetAggregateFunc = (model_id) => {
+        return new Promise((resolve, reject) => {
+            let bottle_info = null;
+            let average_sales = null;
+            let most_profitable_auction_house = null;
+            let SQL_COMPLETE = () => {
+                if (bottle_info != null && average_sales != null && most_profitable_auction_house != null) {
+                    bottle_info.mostProfitableAuctionHouse = most_profitable_auction_house;
+                    resolve([bottle_info, average_sales]);
+                }
+            };
+            aggregate_data.GetBottleInfo(model_id, (i) => {
+                bottle_info = i;
+                bottle_info.modelID = model_id;
+                //console.log("GetBottleInfo: " + (new Date().getTime() - startTime) + "ms");
+                SQL_COMPLETE();
+            });
+            // Ineffecient
+            GetMostProfitableAuctionHousePerBottle(model_id).then((auctionHouse) => {
+                most_profitable_auction_house = auctionHouse;
+                //console.log("GetMostProfitableAuctionHousePerBottle: " + (new Date().getTime() - startTime) + "ms");
+                SQL_COMPLETE();
+            });
+            // Ineffecient
+            aggregate_data.GetAveragesByMonthYear(model_id, (r) => {
+                average_sales = r;
+                //console.log("GetAveragesByMonthYear: " + (new Date().getTime() - startTime) + "ms");
+                SQL_COMPLETE();
+            });
+        });
+    };
+    RetrieveUserID(req.session.sID, (userID) => {
+        GetCellarContent(userID, (cellar_content) => {
+            for (let i = 0; i < cellar_content.length; i++) {
+                GetAggregateFunc(cellar_content[i].bottle_id).then((results) => {
+                    aggregateBottles.push(results);
+                    if (aggregateBottles.length == cellar_content.length) {
+                        res.render("cellar/dashboard", { filter: "bottles", timeScale: timescale, cellar_content: JSON.stringify(cellar_content), aggregate_bottles: JSON.stringify(aggregateBottles) });
+                    }
+                });
+            }
+        });
+    });
 });
 app.get('/dashboard/filter=:filter/timescale=:timescale', (req, res) => {
     let filter = req.params.filter;
     let timescale = req.params.timescale;
-    res.render("cellar/dashboard", { filter: filter, timeScale: timescale });
+    let aggregateBottles = [];
+    //anchor
+    let GetAggregateFunc = (model_id) => {
+        return new Promise((resolve, reject) => {
+            let bottle_info = null;
+            let average_sales = null;
+            let most_profitable_auction_house = null;
+            let SQL_COMPLETE = () => {
+                if (bottle_info != null && average_sales != null && most_profitable_auction_house != null) {
+                    bottle_info.mostProfitableAuctionHouse = most_profitable_auction_house;
+                    resolve([bottle_info, average_sales]);
+                }
+            };
+            aggregate_data.GetBottleInfo(model_id, (i) => {
+                bottle_info = i;
+                bottle_info.modelID = model_id;
+                //console.log("GetBottleInfo: " + (new Date().getTime() - startTime) + "ms");
+                SQL_COMPLETE();
+            });
+            // Ineffecient
+            GetMostProfitableAuctionHousePerBottle(model_id).then((auctionHouse) => {
+                most_profitable_auction_house = auctionHouse;
+                //console.log("GetMostProfitableAuctionHousePerBottle: " + (new Date().getTime() - startTime) + "ms");
+                SQL_COMPLETE();
+            });
+            // Ineffecient
+            aggregate_data.GetAveragesByMonthYear(model_id, (r) => {
+                average_sales = r;
+                //console.log("GetAveragesByMonthYear: " + (new Date().getTime() - startTime) + "ms");
+                SQL_COMPLETE();
+            });
+        });
+    };
+    RetrieveUserID(req.session.sID, (userID) => {
+        GetCellarContent(userID, (cellar_content) => {
+            for (let i = 0; i < cellar_content.length; i++) {
+                GetAggregateFunc(cellar_content[i].bottle_id).then((results) => {
+                    aggregateBottles.push(results);
+                    if (aggregateBottles.length == cellar_content.length) {
+                        res.render("cellar/dashboard", { filter: filter, timeScale: timescale, cellar_content: JSON.stringify(cellar_content), aggregate_bottles: JSON.stringify(aggregateBottles) });
+                    }
+                });
+            }
+        });
+    });
 });
 app.get('/dashboard/timescale=:timescale/filter=:filter', (req, res) => {
     let filter = req.params.filter;
     let timescale = req.params.timescale;
-    res.render("cellar/dashboard", { filter: filter, timeScale: timescale });
+    let aggregateBottles = [];
+    //anchor
+    let GetAggregateFunc = (model_id) => {
+        return new Promise((resolve, reject) => {
+            let bottle_info = null;
+            let average_sales = null;
+            let most_profitable_auction_house = null;
+            let SQL_COMPLETE = () => {
+                if (bottle_info != null && average_sales != null && most_profitable_auction_house != null) {
+                    bottle_info.mostProfitableAuctionHouse = most_profitable_auction_house;
+                    resolve([bottle_info, average_sales]);
+                }
+            };
+            aggregate_data.GetBottleInfo(model_id, (i) => {
+                bottle_info = i;
+                bottle_info.modelID = model_id;
+                //console.log("GetBottleInfo: " + (new Date().getTime() - startTime) + "ms");
+                SQL_COMPLETE();
+            });
+            // Ineffecient
+            GetMostProfitableAuctionHousePerBottle(model_id).then((auctionHouse) => {
+                most_profitable_auction_house = auctionHouse;
+                //console.log("GetMostProfitableAuctionHousePerBottle: " + (new Date().getTime() - startTime) + "ms");
+                SQL_COMPLETE();
+            });
+            // Ineffecient
+            aggregate_data.GetAveragesByMonthYear(model_id, (r) => {
+                average_sales = r;
+                //console.log("GetAveragesByMonthYear: " + (new Date().getTime() - startTime) + "ms");
+                SQL_COMPLETE();
+            });
+        });
+    };
+    RetrieveUserID(req.session.sID, (userID) => {
+        GetCellarContent(userID, (cellar_content) => {
+            for (let i = 0; i < cellar_content.length; i++) {
+                GetAggregateFunc(cellar_content[i].bottle_id).then((results) => {
+                    aggregateBottles.push(results);
+                    if (aggregateBottles.length == cellar_content.length) {
+                        res.render("cellar/dashboard", { filter: filter, timeScale: timescale, cellar_content: JSON.stringify(cellar_content), aggregate_bottles: JSON.stringify(aggregateBottles) });
+                    }
+                });
+            }
+        });
+    });
 });
 app.get('/wishlist/', (req, res) => {
     res.render("cellar/wishlist");
