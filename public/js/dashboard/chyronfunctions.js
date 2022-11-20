@@ -1,7 +1,7 @@
 function GetNewsHeadlineString (){
     return new Promise(function(resolve, reject) {
         let headlineString = "";
-        fetch("http://localhost:3000/api/v1/get_news_articles").then( ( response ) => {
+        fetch("/api/v1/get_news_articles").then( ( response ) => {
             response.json().then( ( data ) => {
                 
                 headlineString = data.join(" | ");

@@ -473,11 +473,17 @@ function TruncatePriceHistoryToAfterMonthYear(priceHistory, cutoffMonthYear) {
 */
 async function createCellarListItemFromTemplate(bottleTemplate) {
 
-    let template_res = await fetch(`/api/v1/get_aggregate/${bottleTemplate.bottle_id}`);
+    //console.log( bottleTemplate.bottle_id );
 
-    let bottle_info = await template_res.json();
+    let bottle_info = null;
 
-    bottleAggregates.push(bottle_info);
+    for ( let i = 0; i < bottleAggregates.length; i++ ){
+        if ( bottleAggregates[i][0].modelID == bottleTemplate.bottle_id ){
+            bottle_info = bottleAggregates[i];
+        }
+    }
+
+    //bottleAggregates.push(bottle_info);
     let template_info = bottle_info[0];
     let bottle_prices = cutOffDate == null ? bottle_info[1]
         : TruncatePriceHistoryToAfterMonthYear(bottle_info[1], cutOffDate);
@@ -521,11 +527,10 @@ async function createCellarListItemFromTemplate(bottleTemplate) {
 
 async function createCellarList() {
     cellarListItems = [];
-    let res = await fetch("/api/v1/get_cellar_content");
-    cellarContent = await res.json();
+    //let res = await fetch("/api/v1/get_cellar_content");
+    cellarContent = JSON.parse(document.getElementById("filter_element").getAttribute("cellarcontent"));
+    bottleAggregates = JSON.parse( document.getElementById("filter_element").getAttribute("aggregatebottles") );
 
-    console.log(cellarContent);
-    
     for (var i = 0; i < cellarContent.length; i++) {
         createCellarListItemFromTemplate(cellarContent[i]).then(() => {
             if ( cellarListItems.length == cellarContent.length ){
