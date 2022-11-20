@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head.ejs') %>
+    <link rel="stylesheet" href="/css/parse-spreadsheet.css">
+</head>
+<body>
+    <div id="page-content" class="col-12" >
+        <%- include('../partials/navigation.ejs') %>
+        
+        <div id="page-body" class="col-12 d-flex flex-column justify-content-center align-items-center" >
+            <form id="upload-form" class="col-12 col-md-6" action="/api/v1/finish_spreadsheet" method="post">
+                <h1>Let Us Know What Each Column Is For</h1>
+                
+                <div class="form-group">
+                    <label class="form-label" id="whisky-name-label">Which Column Has The Names Of The Bottles?</label>
+                    <select name="bottleName" class="form-select">
+                        <% for( let index = 0; index < columnHeadings.length; index++ ) { %>
+                            <option value="<%= columnHeadings[index] %>"><%= columnHeadings[index] %></option>
+                        <% } %>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" id="purchase-date-label">Which Column Has The Dates The Bottles Were Purchased?</label>
+                    <select name="purchaseDate" class="form-select">
+                        <% for( let index = 0; index < columnHeadings.length; index++ ) { %>
+                            <option value="<%= columnHeadings[index] %>"><%= columnHeadings[index] %></option>
+                        <% } %>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" id="purchase-price-label">Which Column Has The Price The Bottles Were Purchased For?</label>
+                    <select name="purchasePrice" class="form-select">
+                        <% for( let index = 0; index < columnHeadings.length; index++ ) { %>
+                            <option value="<%= columnHeadings[index] %>"><%= columnHeadings[index] %></option>
+                        <% } %>
+                    </select>
+                </div>
+
+                <div class="form-group" >
+                    <input id="submit-button" type="submit" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--<script type="text/javascript" src="/js/comparison.js"></script>-->
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

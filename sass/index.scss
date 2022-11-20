@@ -1,0 +1,238 @@
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+// Animations
+@keyframes scroll-in-right {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+// IDs
+
+:root {
+  --chyron-time: 30s;
+}
+
+#page-body {
+  background-image: url("/images/whisky.jpg");
+  background-position: center;
+  background-size: cover;
+  flex-grow: 1;
+}
+
+#chyron {
+  background-color: black;
+  height: 30px;
+  overflow: hidden;
+  display: flex;
+}
+
+#chyron p {
+  white-space: nowrap;
+
+  color: white;
+  font-weight: bold;
+
+  animation: scroll-in-right var(--chyron-time) linear infinite;
+
+  padding: 0 50px 0 90%;
+}
+
+#title {
+  font-family: "Bebas Neue", cursive;
+  font-weight: 700;
+  font-size: 5em;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+#LeftPane {
+  min-height: 100%;
+  max-height: 100%;
+  border-right: 1px solid lightgray;
+  overflow: auto;
+}
+
+#add-button {
+  margin: 20px 0;
+}
+
+#add-button button {
+  width: 100%;
+  height: 100%;
+  font-size: 1.2em;
+}
+
+#CellarListContainer {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0px;
+  padding-top: 10px;
+  max-height: 100%;
+}
+
+#SortButtonContainer {
+  padding: 10px 10px 0px 10px;
+}
+
+#SortButtonContainer button {
+  margin-right: 10px;
+}
+
+#CellarStatsContainer {
+  display: none;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+// Classes
+
+.cellar-list-item {
+  cursor: pointer;
+  margin: 10px 0px;
+  list-style-type: none;
+  padding-left: 0px;
+  padding: 20px;
+  border-radius: 15px;
+  caret-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.cellar-list-item h1 {
+  font-size: 32px;
+}
+
+.cellar-list-item h2 {
+  font-size: 24px;
+}
+
+.cellar-list-item input {
+  cursor: pointer;
+  width: 32px;
+}
+
+.checkbox {
+  width: 32px;
+}
+
+.PageHeading {
+  margin: 20px 0px;
+}
+
+.profit-green {
+  color: #4F7942;
+}
+
+.profit-red {
+  color: red;
+}
+
+// Elements
+
+button,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label,
+span {
+  caret-color: transparent;
+}
+
+/* Media Queries */
+
+@include media-breakpoint-up(xs) {
+  #title {
+    font-size: 3em;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  #title {
+    font-size: 5em;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #DashboardContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  #ChartContainer {
+    min-width: 100%;
+    max-width: 100%;
+    max-height: 50%;
+    padding: 10px;
+    pointer-events: none;
+    cursor: pointer;
+  }
+
+  #OverlayChart {
+    display: none;
+  }
+
+  #DashboardChart {
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #DashboardContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  #ChartContainer {
+    min-width: 80%;
+    min-height: 50%;
+    max-width: 100%;
+    padding: 0px;
+    margin-bottom: 50px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  #ChartContainer:active {
+    cursor: grabbing;
+  }
+
+  #OverlayChart {
+    width: 100%;
+    flex: 1;
+    position: absolute;
+    pointer-events: none;
+    margin: 0px;
+    padding: 0px;
+    margin: 30px 0px 0px 0px;
+  }
+
+  #DashboardChart {
+    width: 100%;
+    height: 100%;
+    margin: 30px 0px 0px 0px;
+  }
+}

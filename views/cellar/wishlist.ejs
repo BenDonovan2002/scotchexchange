@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head.ejs') %>
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/wishlist.css">
+</head>
+<body>
+    <div id="page-content" class="col-12" >
+        <%- include('../partials/navigation.ejs') %>
+        <div style="width: 100%; min-height: max( 100vh, 700px );" >
+            <h1 id="PageHeading">My Wishlist</h1>
+            <div class="col-12" style="min-height: 100vh; display: flex;" >
+                <div class="col-12" id="ResultsPane">
+
+                </div>
+            </div>
+        </div>
+       
+    </div>
+    <%- include('../partials/footer.ejs') %>
+
+    <script type="text/javascript" src="/js/wishlist.js" ></script>
+</body>
+</html>

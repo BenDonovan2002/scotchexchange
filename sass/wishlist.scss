@@ -1,0 +1,99 @@
+#ResultsPane {
+    height: 100%;
+    background-color: white;
+    padding-left: 10px;
+    overflow: scroll;
+}
+
+.div-item-button {
+    margin: 20px 0px;
+    
+}
+
+.div-item-button a p {
+    color: black;
+    cursor: pointer;
+}
+
+.div-item-button a p:hover {
+    color: #B74601;
+}
+
+@media screen and (max-width: 768px) {
+    #PageHeading {
+        padding: 20px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .ListItem {
+        width: 100%;
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-bottom: 1px solid gray;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .ListItem img {
+        height: 90%;
+        max-height: 200px;
+    }
+    
+    .btn-wishlist {
+        height: 40px;
+        margin-bottom: 10px;
+    }
+    
+    button {
+        background-color: #B74601;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1em;
+        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #PageHeading {
+        padding: 20px;
+    }
+    
+    .ListItem {
+        width: 100%;
+        min-height: 200px;
+        display: flex;
+        border-bottom: 1px solid gray;
+    }
+    
+    .ListItem img {
+        height: 90%;
+        max-height: 200px;
+        margin: 0px 20px;
+    }
+    
+    .btn-wishlist {
+        height: 40px;
+        margin-bottom: 10px;
+    }
+    
+    button {
+        background-color: #B74601;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1em;
+        cursor: pointer;
+    }
+}
+
+a:hover {
+    color: #B74601;
+}

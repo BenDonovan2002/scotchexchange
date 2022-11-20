@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head.ejs') %>
+    <link rel="stylesheet" href="/css/missingbottles.css">
+</head>
+<body>
+    <div id="page-content" class="col-12" >
+        <%- include('../partials/navigation.ejs') %>
+        
+        <div id="page-body" class="col-12 d-flex flex-column justify-content-center align-items-center" >
+            <h1 id="page-heading">We couldn't find some of your bottles in our database...</h1>
+
+            <div class="table-responsive">
+                <table id="comparison-table" class="table table-striped" >
+                    <tr>
+                        <th>Bottle Name</th>
+                    </tr>
+                    <% for( let i = 0; i < missingBottles.length; i++ ) { %>
+                        <tr>
+                            <td><%= missingBottles[i] %></td>
+                        </tr>
+                    <% } %>
+                </table>
+                <h2 id="page-subheading">We recommend you search for these manually</h2>
+            </div>
+            
+            <a id="proceed-button" href="/dashboard/"><button class="btn btn-primary">Back To My Dashboard</button></a>
+        </div>
+    </div>
+    <!--<script type="text/javascript" src="/js/comparison.js"></script>-->
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

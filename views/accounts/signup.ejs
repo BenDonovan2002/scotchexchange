@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head.ejs') %>
+    <link rel="stylesheet" href="/css/signup.css" />
+</head>
+<body>
+    <div id="page-content" class="col-12" >
+        <%- include('../partials/navigation_signin.ejs') %>
+
+        <% if ( err==true ) { %>
+            <div style="background-color: #C82333; height: 50px; border-radius: 5px; margin-top: 20px; display: flex; justify-content: center; align-items: center;" class="col-10 offset-1" >
+                <p style="margin: 0px; padding: 0px; color: white;">Please Enter Valid Details!</p>
+            </div>
+        <% } %>
+        
+
+        <div id="page-body" class="col-12 d-flex justify-content-center align-items-center" >
+            <div id="page-form" class="col-10" >
+                <!--<img id="formicon" src="/images/formicon.png" />-->
+                <form onsubmit="return AuthorizeData()" style="margin: auto; width: 60%; display: flex; flex-direction: column;" action="/signupuser/" method="post" >
+                    <h1 style="margin: 0 auto; font-weight: 700; margin-bottom: 15px; font-family: 'Bebas Neue', cursive; font-weight: 700; font-size: 48px;">Sign Up</h1>
+                    <input id="username_input" type="text" name="username" placeholder="Username" >
+                    <input id="email_input" type="text" name="email" placeholder="E-Mail Address" >
+                    <input id="password_input" type="password" name="password" placeholder="Password" >
+                    <input id="conf_input" type="password" name="conf" placeholder="Confirm Password" >
+                    <input type="submit" class="btn btn-primary" value="Sign Up" style="height: 60px; width: 50%; margin: 0 auto;" />
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function AuthorizeData(){
+            var password = document.getElementById( "password_input" ).value;
+            var password_conf = document.getElementById( "conf_input" ).value;
+
+            if ( password == password_conf && password.length > 0 ){
+                return true;
+            }
+
+            window.location( '/signup/err' );
+            return false;
+        }
+    </script>
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

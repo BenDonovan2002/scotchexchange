@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head.ejs') %>
+    <link rel="stylesheet" href="/css/comparison.css">
+</head>
+<body>
+    <div id="page-content" class="col-12" >
+        <%- include('../partials/navigation.ejs') %>
+        <span id="sale-info" bottleInfo="<%= bottleInfo %>" dat="<%= averageSalesByAuctionHouse %>"></span>
+        
+        <div id="page-body" class="col-12 d-flex flex-column justify-content-center align-items-center" >
+            <h1 id="page-heading"><%= pageTitle %> </h1>
+            <img id="bottle-image" class="col-12 col-md-3" src="<%= imgURL %> " />
+
+            <h3 id="purchase-text">We recommend you purchase this bottle from {AUCTION_HOUSE}. On average, it is {PRICE_COMPARISON} cheaper than the next closest auction house.</h3>
+
+            <div class="table-responsive">
+                <table id="comparison-table" class="table table-striped" >
+                    <tr>
+                        <th>Auction House</th>
+                        <th>Average Sale Price</th>
+                        <th>Difference From Best Price</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/js/comparison.js"></script>
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head.ejs') %>
+    <link rel="stylesheet" href="/css/index.css" />
+</head>
+<body>
+    <div id="page-content" class="col-12" >
+        <%- include('partials/navigation_signin.ejs') %>
+        
+        <div id="page-body" class="col-12 d-flex justify-content-center align-items-center" >
+            <div class="col-10 col-offset-1 d-flex flex-column justify-content-center align-items-center" style="overflow: hidden;">
+                <h1 id="title" >The Scotch Exchange</h1>
+                <form action="/signup/" class="col-4 col-md-2" >
+                    <button style="margin-top: 20px; height: 50px; width: 100%; border: 1px solid black;" class="btn btn-primary">Join</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%- include('partials/footer.ejs') %>
+    <script type="text/javascript" src="js/index.js" ></script>
+</body>
+</html>

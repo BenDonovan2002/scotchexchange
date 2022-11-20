@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head.ejs') %>
+    <link rel="stylesheet" href="/css/signin.css" />
+</head>
+<body>
+    <div id="page-content" class="col-12" >
+
+        <% if ( err==true ) { %>
+            <div style="background-color: #C82333; height: 50px; border-radius: 5px; margin-top: 20px; display: flex; justify-content: center; align-items: center;" class="col-10 offset-1" >
+                <p style="margin: 0px; padding: 0px; color: white;">Username or Password Incorrect!</p>
+            </div>
+        <% } %>
+
+        <div id="page-body" class="col-12 d-flex justify-content-center align-items-center" >
+            <div id="page-form" class="col-10" >
+                <!--<img id="formicon" src="/images/formicon.png" />-->
+                <form style="margin: auto; width: 60%; display: flex; flex-direction: column;" action="/signindev/" method="post" >
+                    <h1 style="margin: 0 auto; font-weight: 700; margin-bottom: 30px; font-family: 'Bebas Neue', cursive; font-weight: 700; font-size: 48px;">Sign In</h1>
+                    <input type="text" name="username" placeholder="Username" >
+                    <input type="password" name="password" placeholder="Password" >
+                    <input type="submit" class="btn btn-primary" value="Sign In" style="height: 60px; width: 50%; margin: 15px auto 0px auto;" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

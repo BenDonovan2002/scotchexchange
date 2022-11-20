@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs') %>
+        <link rel="stylesheet" href="/css/index.css" />
+</head>
+
+<body>
+    <div id="page-content" class="col-12">
+        <%- include('../partials/navigation.ejs') %>
+            <span id="filter_element" timeScale="<%= timeScale %> " filter="<%= filter %>" style="display: none;"></span>
+            <div id="chyron" class="col-12">
+                <p id="chyron-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborumLorem ipsum dolor sit amet,
+                    consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                    enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                    nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                    mollit anim id est laborum</p>
+            </div>
+            <div id="DashboardContainer">
+                <div id="LeftPane" class="col-12 col-md-4 col-lg-3">
+                    <div class="col-11" style="margin-left: auto; margin-right: auto;">
+                        <div style="padding-top: 10px;" class="d-flex justify-content-end" class="col-12">
+                            <button style="margin-right: 10px; display: none;" id="groupButton"
+                                onclick="switchGroupStatus();" class="btn btn-primary">Showing Bottles:
+                                Individually</button>
+                            <button id="checkAllButton" onclick="checkAllItems();" class="btn btn-primary" style="display: none;">Check All</button>
+                        </div>
+                        <div>
+                            <ul id="CellarListContainer">
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div style="min-height: 100vh;" class="col-12 col-md-7 col-lg-9 d-flex flex-column"
+                    style="caret-color: transparent; min-height: 100%; position: relative;">
+                    <div id="SortButtonContainer" class="d-flex justify-content-start" class="col-12">
+                        <button id="BottleFilterButton" class="btn btn-primary">Bottles</button>
+                        <button id="DistilleryFilterButton" class="btn btn-primary">Distillery</button>
+                        <button id="RegionFilterButton" class="btn btn-primary">Region</button>
+                        <button id="CellarFilterButton" class="btn btn-primary">Cellar</button>
+                    </div>
+                    <div id="NoBottlesMessage"
+                        style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin: auto; text-align: center;">
+                        <h1>This is where stats about your cellar will appear</h1>
+                        <h2>Select some bottles to begin</h2>
+                    </div>
+                    <div id="CellarStatsContainer">
+                        <h1 class="PageHeading">Value Of Your Bottles</h1>
+                        <View>
+                            <button onclick="TimeFrameButtonPressed('6M');" class="btn btn-primary" style="min-width: 50px; min-height: 30px;">6M</button>
+                            <button onclick="TimeFrameButtonPressed('YTD');" class="btn btn-primary" style="min-width: 50px; min-height: 30px;">YTD</button>
+                            <button onclick="TimeFrameButtonPressed('1Y');" class="btn btn-primary" style="min-width: 50px; min-height: 30px;">1Y</button>
+                            <button onclick="TimeFrameButtonPressed('3Y');" class="btn btn-primary" style="min-width: 50px; min-height: 30px;">3Y</button>
+                            <button onclick="TimeFrameButtonPressed('Max');" class="btn btn-primary" style="min-width: 50px; min-height: 30px;">Max</button>
+                        </View>
+                        <div id="ChartContainer" >
+                            <canvas id="OverlayChart"></canvas>
+                            <canvas id="DashboardChart"></canvas>
+                        </div>
+                        <h1 class="PageHeading">Cellar Stats</h1>
+                        <table id="BottleStatsTable" style="text-align: center; max-width: 60%;" class="table table-striped">
+                            <tr>
+                                <th>Bottle</th>
+                                <th>Purchased For</th>
+                                <th>Latest Price</th>
+                                <th>Profit/Loss</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <%- include('../partials/footer.ejs') %>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="/js/dashboard/bottleview.js"></script>
+        <script src="/js/dashboard/cellarview.js"></script>
+        <script src="/js/dashboard/distilleryview.js"></script>
+        <script src="/js/dashboard/regionview.js"></script>
+        <script src="/js/dashboard/chyronfunctions.js"></script>
+        <script src="/js/dashboard/dashboard.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+h1 {
+    font-size: 3em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+#page-heading {
+    margin: 10px 0px;
+}
+
+#purchase-text {
+    margin: 50px 0;
+    padding: 0 5%;
+    text-align: center;
+}
+
+#comparison-table {
+    margin-top: 20px;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.table-responsive {
+    max-width: 90%;
+}
+
+.cheapest {
+    color: green;
+}
+
+.not-cheapest {
+    color: red;
+}

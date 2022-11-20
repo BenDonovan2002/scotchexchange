@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs') %>
+        <!--<link rel="stylesheet" href="/css/index.css" />-->
+        <link rel="stylesheet" href="/css/bottle.css">
+</head>
+
+<body>
+    <span id="time_frame" timeFrame="<%= timeframe %> "></span>
+    <div id="bottle_id_div" style="display: none;" bottle_id="<%= bottle_id %>"></div>
+    <div id="page-content" class="col-12">
+        <%- include('../partials/navigation.ejs') %>
+            <div style="width: 100%; min-height: 100vh; display: flex; flex-direction: row; flex-wrap: wrap;">
+                <div class="col-12 col-lg-6" id="LeftPanel">
+                    <h1 id="HeadingElement" style="font-size: 4em; font-weight: bold; text-align: center;">
+                        <%= pageTitle %>
+                    </h1>
+                    <img class="col-6 offset-lg-3" style="margin-bottom: 20px;" src="<%= image_url %>">
+                    <div id="PageDescriptionContainer">
+                        <p style="font-style: italic;">From <a href="http://<%= website_url %>">
+                                <%= website_url %>
+                            </a>:</p>
+                        <p>"<%= pageDescription %>..."</p>
+                    </div>
+                </div>
+                <div id="RightPane" class="col-12 col-lg-6">
+                    <h1>Price History</h1>
+                    <View id="TFButtonContainer">
+                        <button onclick="TimeFrameButtonPressed('6M');" class="btn btn-primary"
+                            style="min-width: 50px; min-height: 30px;">6M</button>
+                        <button onclick="TimeFrameButtonPressed('YTD');" class="btn btn-primary"
+                            style="min-width: 50px; min-height: 30px;">YTD</button>
+                        <button onclick="TimeFrameButtonPressed('1Y');" class="btn btn-primary"
+                            style="min-width: 50px; min-height: 30px;">1Y</button>
+                        <button onclick="TimeFrameButtonPressed('3Y');" class="btn btn-primary"
+                            style="min-width: 50px; min-height: 30px;">3Y</button>
+                        <button onclick="TimeFrameButtonPressed('Max');" class="btn btn-primary"
+                            style="min-width: 50px; min-height: 30px;">Max</button>
+                    </View>
+                    <div id="ChartContainer">
+                        <canvas id="DashboardChart"></canvas>
+                    </div>
+
+
+                    <div class="col-10 offset-1 col-lg-6 offset-lg-3 <%= purchased ? 'ContainerAddFocused' : '' %>" style="border-radius: 20px; padding: 20px; margin-top: 20px; margin-bottom: 20px; display: flex; flex-direction: column;">
+                        <h1 style="margin-left: auto; margin-right: auto; margin-top: 20px;">Add To Your Cellar</h1>
+
+                        <div style="margin-top: 50px;"
+                            class="col-12">
+                            <div class="input-group" style="margin-top: 20px; height: 50px;">
+                                <button onmouseup="ChangeBottleAmount(-1);"
+                                    class="btn btn-primary col-1 input-group-text">-</button>
+                                <input id="bottle_quantity" class="form-control" type="text" placeholder="Quantity"
+                                    value="" />
+
+                                <button onmouseup="ChangeBottleAmount(1);"
+                                    class="btn btn-primary col-1 input-group-text">+</button>
+                            </div>
+
+                            <div id="bottle-add-forms">
+
+                            </div>
+
+                        </div>
+
+
+                        <!--<input type="number" style="margin-top: 20px; height: 50px;" class="col-6 offset-3" />-->
+                        <button onclick="AddBottleToCellar();"
+                            style="margin-top: 20px; height: 50px; margin-bottom: 20px;"
+                            class="col-12 btn btn-primary">Add To Cellar</button>
+                        <div id="messagebox" class="col-12"
+                            style="display: none; justify-content: center; align-items: center; margin-top: 10px; height: 50px; background-color: #B74601; border-radius: 5px;">
+                            <p id="messageboxtext" style="color: white; margin: auto;">Bottle Added To Cellar
+                                Successfully!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+    <%- include('../partials/footer.ejs') %>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script type="text/javascript" src="/js/bottle_info.js"></script>
+</body>
+
+</html>

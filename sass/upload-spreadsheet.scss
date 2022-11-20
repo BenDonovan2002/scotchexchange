@@ -1,0 +1,26 @@
+#page-body {
+   flex-grow: 1;
+}
+
+#upload-form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    aspect-ratio: 1 / 0.8;
+    border: 1px solid rgba(0,0, 0, 0.1);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+    align-items: center;
+    justify-content: center;
+    border-radius: 2%;
+}
+
+#upload-form h1 {
+    margin-bottom: 50px;
+}
+
+#upload-form input {
+    width: 50%;
+    margin: 10px auto;
+}

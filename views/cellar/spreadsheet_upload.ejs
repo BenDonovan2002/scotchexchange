@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head.ejs') %>
+    <link rel="stylesheet" href="/css/upload-spreadsheet.css">
+</head>
+<body>
+    <div id="page-content" class="col-12" >
+        <%- include('../partials/navigation.ejs') %>
+        
+        <div id="page-body" class="col-12 d-flex flex-column justify-content-center align-items-center" >
+            <form id="upload-form" action="/api/v1/upload_file" method="post" enctype="multipart/form-data">
+                <h1>Select Your Spreadsheet To Upload</h1>
+                <input class="form-control" type="file" name="filetoupload" />
+                <input class="btn btn-primary" type="submit" value="Upload" />
+            </form>
+        </div>
+    </div>
+    <!--<script type="text/javascript" src="/js/comparison.js"></script>-->
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>
