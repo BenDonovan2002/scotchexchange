@@ -95,6 +95,7 @@
 
   #ChartContainer {
     min-width: 100%;
+    min-height: 100vw;
     padding: 10px;
     margin-top: 20px;
   }

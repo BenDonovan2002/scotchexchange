@@ -31,7 +31,7 @@ class CellarListItem {
         <li id="cellarList_${index}" ind="${index}" class="cellar-list-item col-12 d-flex justify-content-between" >
           <div>
             <h1>${this.pageTitle}</h1>
-            <p>${quantityHTML}</p>
+            ${groupBottles ? `<h2>Quantity: ${quantity}</h2>` : ""}
           </div>
           <input id=cellarList_${index}_Checkbox type="checkbox"; ></input>
         </li>

@@ -25,24 +25,6 @@
   flex-grow: 1;
 }
 
-#chyron {
-  background-color: black;
-  height: 30px;
-  overflow: hidden;
-  display: flex;
-}
-
-#chyron p {
-  white-space: nowrap;
-
-  color: white;
-  font-weight: bold;
-
-  animation: scroll-in-right var(--chyron-time) linear infinite;
-
-  padding: 0 50px 0 90%;
-}
-
 #title {
   font-family: "Bebas Neue", cursive;
   font-weight: 700;
@@ -56,7 +38,12 @@
   min-height: 100%;
   max-height: 100%;
   border-right: 1px solid lightgray;
-  overflow: auto;
+}
+
+#RightPane {
+  min-height: 100vh;
+  caret-color: transparent;
+  position: relative;
 }
 
 #add-button {
@@ -81,42 +68,22 @@
   padding: 10px 10px 0px 10px;
 }
 
-#SortButtonContainer button {
-  margin-right: 10px;
-}
-
 #CellarStatsContainer {
   display: none;
   width: 100%;
   height: 100%;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
   margin-bottom: 50px;
+  align-items: center;
 }
 
 // Classes
 
 .cellar-list-item {
-  cursor: pointer;
-  margin: 10px 0px;
-  list-style-type: none;
-  padding-left: 0px;
-  padding: 20px;
-  border-radius: 15px;
-  caret-color: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
-}
-
-.cellar-list-item h1 {
-  font-size: 32px;
-}
-
-.cellar-list-item h2 {
-  font-size: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .cellar-list-item input {
@@ -158,22 +125,62 @@ span {
 
 /* Media Queries */
 
-@include media-breakpoint-up(xs) {
+/*
+ ----- Mobile Layout ----
+ + sm: ≥ 576px
+ + md: ≥ 768px
+ ----- Small Laptop / Large Tablet -----
+ + lg: ≥ 992px
+ ----- Large Laptop / MiDPI -----
+ + xl: ≥ 1200px
+ ----- Large Desktop / HiDPI Screen -----
+ + xxl: ≥ 1400px
+*/
+
+/* Mobile */
+@include media-breakpoint-down(lg) {
+
+  #chyron {
+    background-color: black;
+    height: 30px;
+    overflow: hidden;
+    display: flex;
+  }
+  
+  #chyron p {
+    white-space: nowrap;
+  
+    color: white;
+    font-weight: bold;
+  
+    animation: scroll-in-right var(--chyron-time) linear infinite;
+  
+    padding: 0 50px 0 90%;
+  }
+
+  #SortButtonContainer button {
+    margin-right: 10px;
+  }
+
+  .cellar-list-item {
+    cursor: pointer;
+    margin: 10px 0px;
+    list-style-type: none;
+    padding-left: 0px;
+    padding: 20px;
+    border-radius: 15px;
+    caret-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+  }
+
   #title {
     font-size: 3em;
   }
-}
 
-@include media-breakpoint-up(sm) {
-  #title {
-    font-size: 5em;
-  }
-}
-
-@media screen and (max-width: 768px) {
   #DashboardContainer {
-    display: flex;
-    flex-direction: column;
     width: 100%;
     min-height: 100vh;
   }
@@ -181,7 +188,8 @@ span {
   #ChartContainer {
     min-width: 100%;
     max-width: 100%;
-    max-height: 50%;
+    min-height: 100vw;
+    max-height: 100%;
     padding: 10px;
     pointer-events: none;
     cursor: pointer;
@@ -193,12 +201,108 @@ span {
 
   #DashboardChart {
     margin-top: 20px;
-    width: 100%;
-    height: 100%;
   }
+
 }
 
-@media screen and (min-width: 768px) {
+/* Small Laptop / Large Tablet  */
+@include media-breakpoint-between(lg, xl) {
+
+  #StatsTableContainer {
+    margin: 20px auto 100px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 100px; 
+  }
+
+  #BottleStatsTable {
+    display: block;
+    margin: 0 auto;
+  }
+
+  #BottleStatsTable * {
+    font-size: 0.9em;
+  }
+
+  #BottleStatsTable::after {
+    content: "";
+    min-height: 50px;
+    padding: 20px;
+  }
+
+  #chyron {
+    background-color: red;
+    height: 20px;
+    overflow: hidden;
+    display: flex;
+  }
+
+  .PageHeading {
+    font-size: 1.5em;
+  }
+  
+  #chyron p {
+    font-size: 0.8em;
+    white-space: nowrap;
+  
+    color: white;
+    font-weight: bold;
+  
+    animation: scroll-in-right var(--chyron-time) linear infinite;
+  
+    padding: 0 50px 0 90%;
+  }
+  
+  #NoBottlesMessage h1 {
+    font-size: 1.5em;
+  }
+
+  #NoBottlesMessage h2 {
+    font-size: 1em;
+  }
+  
+  #MenuFunctionButtons button {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #SortButtonContainer button {
+    margin-right: 10px;
+  }
+
+  .cellar-list-item {
+    cursor: pointer;
+    margin: 5px 0px;
+    list-style-type: none;
+    padding-left: 0px;
+    padding: 8px;
+    border-radius: 15px;
+    caret-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+  }
+
+  .cellar-list-item h1 {
+    font-size: 1em;
+    margin: 0px;
+    padding: 0px;
+    line-height: 1em;
+  }
+
+  .cellar-list-item h2 {
+    font-size: 0.8em;
+    margin: 0px;
+    padding: 0px;
+    line-height: 1em;
+  }
+
+  #title {
+    font-size: 1.5em;
+  }
+
   #DashboardContainer {
     display: flex;
     flex-direction: row;
@@ -207,9 +311,233 @@ span {
   }
 
   #ChartContainer {
-    min-width: 80%;
-    min-height: 50%;
-    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    min-height: 70vh;
+    max-height: 70vh;
+    padding: 0px;
+    margin-bottom: 50px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  #ChartContainer:active {
+    cursor: grabbing;
+  }
+
+  #OverlayChart {
+    width: 100%;
+    flex: 1;
+    position: absolute;
+    pointer-events: none;
+    margin: 0px;
+    padding: 0px;
+    margin: 30px 0px 0px 0px;
+  }
+
+  #DashboardChart {
+    width: 100%;
+    height: 100%;
+    margin: 30px 0px 0px 0px;
+  }
+
+  .btn {
+    font-size: 0.65em;
+  }
+}
+
+/* Large Laptop / MiDPI */
+@include media-breakpoint-between(xl, xxl) {
+
+  #StatsTableContainer {
+    margin: 20px auto 100px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 100px; 
+  }
+
+  #BottleStatsTable {
+    display: block;
+    margin: 0 auto;
+  }
+
+  #BottleStatsTable * {
+    font-size: 1em;
+  }
+
+  #BottleStatsTable::after {
+    content: "";
+    min-height: 50px;
+    padding: 20px;
+  }
+
+  .btn {
+    font-size: 0.8em;
+  }
+
+  .PageHeading {
+    font-size: 2em;
+  }
+
+  #chyron {
+    background-color: blue;
+    height: 20px;
+    overflow: hidden;
+    display: flex;
+  }
+  
+  #chyron p {
+    font-size: 0.8em;
+    white-space: nowrap;
+  
+    color: white;
+    font-weight: bold;
+  
+    animation: scroll-in-right var(--chyron-time) linear infinite;
+  
+    padding: 0 50px 0 90%;
+  }
+  
+  #NoBottlesMessage h1 {
+    font-size: 2em;
+    margin: 0px;
+    padding: 0px;
+    line-height: 2em;
+  }
+
+  #NoBottlesMessage h2 {
+    font-size: 1.5em;
+  }
+  
+  #MenuFunctionButtons button {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #SortButtonContainer button {
+    margin-right: 10px;
+  }
+
+  .cellar-list-item {
+    cursor: pointer;
+    margin: 5px 0px;
+    list-style-type: none;
+    padding-left: 0px;
+    padding: 8px;
+    border-radius: 15px;
+    caret-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+  }
+
+  .cellar-list-item h1 {
+    font-size: 1.5em;
+  }
+
+  #title {
+    font-size: 3em;
+  }
+
+  #DashboardContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  #ChartContainer {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    min-height: 70vh;
+    max-height: 70vh;
+    padding: 0px;
+    margin-bottom: 50px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  #ChartContainer:active {
+    cursor: grabbing;
+  }
+
+  #OverlayChart {
+    width: 100%;
+    flex: 1;
+    position: absolute;
+    pointer-events: none;
+    margin: 0px;
+    padding: 0px;
+    margin: 30px 0px 0px 0px;
+  }
+
+  #DashboardChart {
+    width: 100%;
+    height: 100%;
+    margin: 30px 0px 0px 0px;
+  }
+}
+
+/* Large Desktop / HiDPI */
+@include media-breakpoint-up(xxl) {
+
+  #chyron {
+    background-color: black;
+    height: 30px;
+    overflow: hidden;
+    display: flex;
+  }
+  
+  #chyron p {
+    white-space: nowrap;
+  
+    color: white;
+    font-weight: bold;
+  
+    animation: scroll-in-right var(--chyron-time) linear infinite;
+  
+    padding: 0 50px 0 90%;
+  }
+
+  #SortButtonContainer button {
+    margin-right: 10px;
+  }
+
+  .cellar-list-item {
+    cursor: pointer;
+    margin: 10px 0px;
+    list-style-type: none;
+    padding-left: 0px;
+    padding: 20px;
+    border-radius: 15px;
+    caret-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+  }
+
+  #title {
+    font-size: 5em;
+  }
+
+  #DashboardContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  #ChartContainer {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    min-height: 70vh;
+    max-height: 70vh;
     padding: 0px;
     margin-bottom: 50px;
     position: relative;

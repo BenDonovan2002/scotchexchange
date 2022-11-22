@@ -11,7 +11,7 @@ a {
 }
 
 #page-content {
-  min-height: max(700px, 100vh);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }

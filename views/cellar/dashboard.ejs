@@ -4,6 +4,7 @@
 <head>
     <%- include('../partials/head.ejs') %>
         <link rel="stylesheet" href="/css/index.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
 
 <body>
@@ -23,9 +24,9 @@
                     mollit anim id est laborum</p>
             </div>
             <div id="DashboardContainer">
-                <div id="LeftPane" class="col-12 col-md-4 col-lg-3">
+                <div id="LeftPane" class="col-12 col-lg-3">
                     <div class="col-11" style="margin-left: auto; margin-right: auto;">
-                        <div style="padding-top: 10px;" class="d-flex justify-content-end" class="col-12">
+                        <div id="MenuFunctionButtons" style="padding-top: 10px;" class="d-flex justify-content-end" class="col-12">
                             <button style="margin-right: 10px; display: none;" id="groupButton"
                                 onclick="switchGroupStatus();" class="btn btn-primary">Showing Bottles:
                                 Individually</button>
@@ -41,8 +42,7 @@
                 </div>
 
 
-                <div style="min-height: 100vh;" class="col-12 col-md-7 col-lg-9 d-flex flex-column"
-                    style="caret-color: transparent; min-height: 100%; position: relative;">
+                <div id="RightPane" class="col-12 col-lg-9 d-flex flex-column">
                     <div id="SortButtonContainer" class="d-flex justify-content-start" class="col-12">
                         <button id="BottleFilterButton" class="btn btn-primary">Bottles</button>
                         <button id="DistilleryFilterButton" class="btn btn-primary">Distillery</button>
@@ -50,7 +50,7 @@
                         <button id="CellarFilterButton" class="btn btn-primary">Cellar</button>
                     </div>
                     <div id="NoBottlesMessage"
-                        style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin: auto; text-align: center;">
+                        style="width: 100%; height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0px auto auto auto; text-align: center;">
                         <h1>This is where stats about your cellar will appear</h1>
                         <h2>Select some bottles to begin</h2>
                     </div>
@@ -68,14 +68,16 @@
                             <canvas id="DashboardChart"></canvas>
                         </div>
                         <h1 class="PageHeading">Cellar Stats</h1>
-                        <table id="BottleStatsTable" style="text-align: center; max-width: 60%;" class="table table-striped">
-                            <tr>
-                                <th>Bottle</th>
-                                <th>Purchased For</th>
-                                <th>Latest Price</th>
-                                <th>Profit/Loss</th>
-                            </tr>
-                        </table>
+                        <div id="StatsTableContainer">
+                            <table id="BottleStatsTable" style="text-align: center;" class="table table-striped">
+                                <tr>
+                                    <th>Bottle</th>
+                                    <th>Purchased For</th>
+                                    <th>Latest Price</th>
+                                    <th>Profit/Loss</th>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

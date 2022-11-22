@@ -33,6 +33,10 @@ app.use(session({
     saveUninitialized: true,
 }));
 
+const ALLOWED_IPS: String[] = [
+    "109.170.228.245"
+]
+
 /**
  * Keeps us logged in during development as the session will be
  * lost every time the server restarts.
@@ -42,9 +46,7 @@ app.use(function (req: any, res: any, next: any) {
     if (req.path == "/auth/dev/login" || req.path == "/auth/dev/login/err" || req.path == "/signindev/") {
         next();
     } else {
-        if (!req.session.development_id) {
-            res.redirect("/auth/dev/login");
-        } else {
+        if (req.session.development_id || ALLOWED_IPS.includes( req.socket.remoteAddress )) {
             req.session.sID = "f7e35a73-9dc9-4f5a-b6da-fa1420ba3972";
             if (req.path != "/signin/" && req.path != "/signup/" && req.path != "/") {
                 if (!req.session.sID) {
@@ -63,6 +65,9 @@ app.use(function (req: any, res: any, next: any) {
             } else {
                 next();
             }
+            
+        } else {
+            res.redirect("/auth/dev/login");
         }
     }
 });
