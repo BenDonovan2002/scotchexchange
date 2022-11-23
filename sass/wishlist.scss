@@ -1,8 +1,12 @@
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
 #ResultsPane {
     height: 100%;
     background-color: white;
     padding-left: 10px;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .div-item-button {
@@ -24,6 +28,7 @@
         padding: 20px;
         width: 100%;
         text-align: center;
+        margin-top: 0px !important; 
     }
     
     .ListItem {
@@ -62,6 +67,7 @@
 @media screen and (min-width: 768px) {
     #PageHeading {
         padding: 20px;
+        margin-top: 0px !important; 
     }
     
     .ListItem {
@@ -96,4 +102,32 @@
 
 a:hover {
     color: #B74601;
+}
+
+@include media-breakpoint-down(lg) {
+    h1 {
+        margin-top: 20px;
+        font-size: 1.5em;
+    }
+}
+
+@include media-breakpoint-between(lg, xl) {
+    h1 {
+        margin-top: 20px;
+        font-size: 1.5em;
+    }
+}
+
+@include media-breakpoint-between(xl, xxl) {
+    h1 {
+        margin-top: 20px;
+        font-size: 2em;
+    }
+}
+
+@include media-breakpoint-up(xxl) {
+    h1 {
+        margin-top: 20px;
+        font-size: 1.5em;
+    }
 }

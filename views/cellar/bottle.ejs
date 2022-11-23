@@ -14,7 +14,7 @@
         <%- include('../partials/navigation.ejs') %>
             <div style="width: 100%; min-height: 100vh; display: flex; flex-direction: row; flex-wrap: wrap;">
                 <div class="col-12 col-lg-6" id="LeftPanel">
-                    <h1 id="HeadingElement" style="font-size: 4em; font-weight: bold; text-align: center;">
+                    <h1 id="HeadingElement" class="PageHeading" style="font-weight: bold; text-align: center;">
                         <%= pageTitle %>
                     </h1>
                     <img class="col-6 offset-lg-3" style="margin-bottom: 20px;" src="<%= image_url %>">
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div id="RightPane" class="col-12 col-lg-6">
-                    <h1>Price History</h1>
+                    <h1 class="PageHeading">Price History</h1>
                     <View id="TFButtonContainer">
                         <button onclick="TimeFrameButtonPressed('6M');" class="btn btn-primary"
                             style="min-width: 50px; min-height: 30px;">6M</button>
@@ -45,18 +45,18 @@
 
 
                     <div class="col-10 offset-1 col-lg-6 offset-lg-3 <%= purchased ? 'ContainerAddFocused' : '' %>" style="border-radius: 20px; padding: 20px; margin-top: 20px; margin-bottom: 20px; display: flex; flex-direction: column;">
-                        <h1 style="margin-left: auto; margin-right: auto; margin-top: 20px;">Add To Your Cellar</h1>
+                        <h1 class="PageHeading" style="margin-left: auto; margin-right: auto; margin-top: 20px;">Add To Your Cellar</h1>
 
-                        <div style="margin-top: 50px;"
+                        <div style="margin-top: 1vh;"
                             class="col-12">
-                            <div class="input-group" style="margin-top: 20px; height: 50px;">
+                            <div class="input-group form-input" style="margin-top: 20px;">
                                 <button onmouseup="ChangeBottleAmount(-1);"
-                                    class="btn btn-primary col-1 input-group-text">-</button>
+                                    class="btn btn-primary col-2 input-group-text">-</button>
                                 <input id="bottle_quantity" class="form-control" type="text" placeholder="Quantity"
                                     value="" />
 
                                 <button onmouseup="ChangeBottleAmount(1);"
-                                    class="btn btn-primary col-1 input-group-text">+</button>
+                                    class="btn btn-primary col-2 input-group-text">+</button>
                             </div>
 
                             <div id="bottle-add-forms">
@@ -68,12 +68,10 @@
 
                         <!--<input type="number" style="margin-top: 20px; height: 50px;" class="col-6 offset-3" />-->
                         <button onclick="AddBottleToCellar();"
-                            style="margin-top: 20px; height: 50px; margin-bottom: 20px;"
-                            class="col-12 btn btn-primary">Add To Cellar</button>
+                            class="col-12 btn btn-primary form-input">Add To Cellar</button>
                         <div id="messagebox" class="col-12"
                             style="display: none; justify-content: center; align-items: center; margin-top: 10px; height: 50px; background-color: #B74601; border-radius: 5px;">
-                            <p id="messageboxtext" style="color: white; margin: auto;">Bottle Added To Cellar
-                                Successfully!</p>
+                            <p id="messageboxtext" style="color: white; margin: auto;">Bottle Added To Cellar Successfully!</p>
                         </div>
                     </div>
                 </div>

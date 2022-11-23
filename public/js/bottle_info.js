@@ -72,13 +72,13 @@ function CreateBottleAddForms() {
 
     for (let i = 0; i < bottleQuantity; i++) {
         formHTML += `
-        <div class="input-group" style="margin-top: 40px; margin-bottom: 20px; height: 50px;">
-                        <a style="background-color: #B74601; border-color: #B74601; color: white;" class="col-1 input-group-text">£</a>
+        <div class="form-input input-group" style="height: 5vh;">
+                        <a style="background-color: #B74601; border-color: #B74601; color: white;" class="col-2 input-group-text">£</a>
                         <input class="form-control purchase_price" type="text"
                             placeholder="Purchase Price" step="0.01" value="" />
                     </div>
 
-        <input style="height: 50px; margin-top: 20px;" class="form-control purchase_date" type="date"
+        <input style="min-height: 5vh;" class="form-input form-control purchase_date" type="date"
                             placeholder="Date Purchased" value="" /> 
                 `;
     }

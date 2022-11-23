@@ -151,12 +151,9 @@ span {
     list-style-type: none;
     padding-left: 0px;
     padding: 20px;
-    border-radius: 15px;
+    border-radius: 0px;
     caret-color: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
 
   #title {
@@ -254,12 +251,9 @@ span {
     list-style-type: none;
     padding-left: 0px;
     padding: 8px;
-    border-radius: 15px;
+    border-radius: 0px;
     caret-color: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
 
   .cellar-list-item h1 {
@@ -320,7 +314,7 @@ span {
   }
 
   .btn {
-    font-size: 0.65em;
+    font-size: 0.65em !important;
   }
 }
 /* Large Laptop / MiDPI */
@@ -349,7 +343,7 @@ span {
   }
 
   .btn {
-    font-size: 0.8em;
+    font-size: 0.8em !important;
   }
 
   .PageHeading {
@@ -398,16 +392,17 @@ span {
     list-style-type: none;
     padding-left: 0px;
     padding: 8px;
-    border-radius: 15px;
+    border-radius: 0px;
     caret-color: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
 
   .cellar-list-item h1 {
-    font-size: 1.5em;
+    font-size: 1.2em;
+  }
+
+  .cellar-list-item h2 {
+    font-size: 1em;
   }
 
   #title {
@@ -455,6 +450,48 @@ span {
 }
 /* Large Desktop / HiDPI */
 @media (min-width: 1400px) {
+  #StatsTableContainer {
+    margin: 20px auto 100px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 100px;
+  }
+
+  #BottleStatsTable {
+    display: block;
+    margin: 0 auto;
+  }
+
+  #BottleStatsTable * {
+    font-size: 1em;
+  }
+
+  #BottleStatsTable::after {
+    content: "";
+    min-height: 50px;
+    padding: 20px;
+  }
+
+  .PageHeading {
+    font-size: 1.5em;
+  }
+
+  .btn {
+    font-size: 0.8em !important;
+  }
+
+  #NoBottlesMessage h1 {
+    font-size: 2em;
+    margin: 0px;
+    padding: 0px;
+    line-height: 2em;
+  }
+
+  #NoBottlesMessage h2 {
+    font-size: 1.5em;
+  }
+
   #chyron {
     background-color: black;
     height: 30px;
@@ -480,12 +517,23 @@ span {
     list-style-type: none;
     padding-left: 0px;
     padding: 20px;
-    border-radius: 15px;
+    border-radius: 0px;
     caret-color: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .cellar-list-item h1 {
+    font-size: 1.5em;
+    margin: 0px;
+    padding: 0px;
+    line-height: 1.5em;
+  }
+
+  .cellar-list-item h2 {
+    font-size: 1em;
+    margin: 0px;
+    padding: 0px;
+    line-height: 1em;
   }
 
   #title {

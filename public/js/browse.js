@@ -71,8 +71,8 @@ function CreateResultItem(bottle) {
                 
                 <p>Bottle Volume: ${bottle['bottle_size']}cl</p>
                 <!--<button class="btn btn-primary col-6" style="height: 50px;">Add To Cellar</button>-->
-                <button onclick="OnButtonPress(${bottle['id']})" class="result-btn btn btn-primary col-6">Bottle Information</button>
-                <a href="/api/v1/add_to_wishlist/${bottle['id']}" class="col-6"><button class="result-btn btn btn-primary col-12">Add To Wishlist</button></a>
+                <button onclick="OnButtonPress(${bottle['id']})" class="result-btn btn btn-primary col-10">Bottle Information</button>
+                <a href="/api/v1/add_to_wishlist/${bottle['id']}" class="col-10"><button class="result-btn btn btn-primary col-12">Add To Wishlist</button></a>
             </div>
         </div>
         `

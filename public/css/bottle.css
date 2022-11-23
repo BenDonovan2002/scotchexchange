@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .ContainerAddFocused {
   position: relative;
 }
@@ -98,6 +99,64 @@
     min-height: 100vw;
     padding: 10px;
     margin-top: 20px;
+  }
+}
+/*
+ ----- Mobile Layout ----
+ + sm: ≥ 576px
+ + md: ≥ 768px
+ ----- Small Laptop / Large Tablet -----
+ + lg: ≥ 992px
+ ----- Large Laptop / MiDPI -----
+ + xl: ≥ 1200px
+ ----- Large Desktop / HiDPI Screen -----
+ + xxl: ≥ 1400px
+*/
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .PageHeading {
+    font-size: 1.5em;
+  }
+
+  .form-input {
+    margin-top: 4vh;
+  }
+
+  #PageDescriptionContainer p {
+    font-size: 0.8em;
+  }
+
+  .btn {
+    font-size: 0.65em !important;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  .PageHeading {
+    font-size: 1.5em;
+  }
+
+  .form-input {
+    margin-top: 2vh;
+  }
+
+  #PageDescriptionContainer p {
+    font-size: 0.9em;
+  }
+
+  .btn {
+    font-size: 0.8em !important;
+  }
+}
+@media (min-width: 1400px) {
+  .form-input {
+    margin-top: 0.9vh;
+  }
+
+  #PageDescriptionContainer p {
+    font-size: 1em;
+  }
+
+  .PageHeading {
+    font-size: 1.5em;
   }
 }
 /* Animations */

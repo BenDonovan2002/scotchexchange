@@ -1,3 +1,7 @@
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
 .ContainerAddFocused {
     position: relative;
 }
@@ -97,9 +101,75 @@
 
     #ChartContainer {
         min-width: 100%;
-	min-height: 100vw;
+	    min-height: 100vw;
         padding: 10px;
         margin-top: 20px;
+    }
+}
+
+/*
+ ----- Mobile Layout ----
+ + sm: ≥ 576px
+ + md: ≥ 768px
+ ----- Small Laptop / Large Tablet -----
+ + lg: ≥ 992px
+ ----- Large Laptop / MiDPI -----
+ + xl: ≥ 1200px
+ ----- Large Desktop / HiDPI Screen -----
+ + xxl: ≥ 1400px
+*/
+
+@include media-breakpoint-down(lg) {
+
+}
+
+@include media-breakpoint-between(lg, xl) {
+    .PageHeading {
+        font-size: 1.5em;
+    }
+
+    .form-input {
+        margin-top: 4vh;
+    }
+
+    #PageDescriptionContainer p {
+        font-size: 0.8em;
+    }
+
+    .btn {
+        font-size: 0.65em !important;
+    }
+}
+
+@include media-breakpoint-between(xl, xxl) {
+    .PageHeading {
+        font-size: 1.5em;
+    }
+
+    .form-input {
+        margin-top: 2vh;
+    }
+
+    #PageDescriptionContainer p {
+        font-size: 0.9em;
+    }
+
+    .btn {
+        font-size: 0.8em !important;
+    }
+}
+
+@include media-breakpoint-up(xxl) {
+    .form-input {
+        margin-top: 0.9vh;
+    }
+
+    #PageDescriptionContainer p {
+        font-size: 1em;
+    }
+
+    .PageHeading {
+        font-size: 1.5em;
     }
 }
 
